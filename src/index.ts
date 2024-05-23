@@ -23,28 +23,6 @@ app.get("/hello-world", cors(), (req: Request, res: Response) => {
     res.send(response);
 });
 
-app.get("/player-info", cors(), (req: Request, res: Response) => {
-  const response = ticTacToe.GetPlayers()
-  res.send(response);
-});
-
-app.post("/player-info", cors(), (req: Request, res: Response) => {
-  const data = getDataFromPostRequest(req)
-  const response = ticTacToe.CreatePlayer(data.name, data.color)
-  res.send(response);
-});
-
-app.patch("/player-info", cors(), (req: Request, res: Response) => {
-  const data = getDataFromPatchRequest(req)
-  const response = ticTacToe.UpdateScore(data.name)
-  res.send(response);
-});
-
-app.post("/clear-info", (req: Request, res: Response) => {
-  const response = ticTacToe.Clear()
-  res.send(response);
-});
-
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
