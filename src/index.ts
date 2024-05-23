@@ -28,7 +28,7 @@ app.get("/player-info", (req: Request, res: Response) => {
   res.send(response);
 });
 
-app.post("/player-info", (req: Request, res: Response) => {
+app.post("/player-info", cors(), (req: Request, res: Response) => {
   const data = getDataFromPostRequest(req)
   const response = ticTacToe.CreatePlayer(data.name, data.color)
   res.send(response);
