@@ -7,6 +7,12 @@ export class TicTacToe {
     }
 
     public CreatePlayer(name: String, color: String): Player {
+        const players = this.database.GetAllPlayers()
+        for(const player of players) {
+            if(player.name == name) {
+                return player
+            }
+        }
         const player = this.database.Create(name, color)
         return player
     }

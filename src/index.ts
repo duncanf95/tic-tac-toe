@@ -18,12 +18,12 @@ app.use(express.urlencoded({ extended: false }))
 
 const ticTacToe = new TicTacToe()
 
-app.get("/hello-world", (req: Request, res: Response) => {
+app.get("/hello-world", cors(), (req: Request, res: Response) => {
     const response = ticTacToe.HelloWorld()
     res.send(response);
 });
 
-app.get("/player-info", (req: Request, res: Response) => {
+app.get("/player-info", cors(), (req: Request, res: Response) => {
   const response = ticTacToe.GetPlayers()
   res.send(response);
 });
@@ -34,7 +34,7 @@ app.post("/player-info", cors(), (req: Request, res: Response) => {
   res.send(response);
 });
 
-app.patch("/player-info", (req: Request, res: Response) => {
+app.patch("/player-info", cors(), (req: Request, res: Response) => {
   const data = getDataFromPatchRequest(req)
   const response = ticTacToe.UpdateScore(data.name)
   res.send(response);
