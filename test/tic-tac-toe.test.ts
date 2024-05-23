@@ -6,15 +6,21 @@ import { app } from "../src/index"
 describe("Test app.ts", () => {
 
     test("create user test", async () => {
-      const res = await (await request(app).post("/player-info")).body({name: "test name", color: "red"})
+      const res = await request(app).post("/player-info").send({name: "test name", color: "red"})
       expect(res.status).toEqual(200)
-      expect(res.body).toEqual([{"color": "red", "name": "my name"}]);
+      expect(res.body).toEqual({"color": "red", "name": "test name", score: 0});
+    });
+
+    test("create user test", async () => {
+      const res = await request(app).patch("/player-info").send({name: "test name"})
+      expect(res.status).toEqual(200)
+      expect(res.body).toEqual({"color": "red", "name": "test name", score: 1});
     });
 
     test("get user test", async () => {
       const res = await request(app).get("/player-info")
       expect(res.status).toEqual(200)
-      expect(res.body).toEqual([{"color": "red", "name": "my name", "score": 0}]);
+      expect(res.body).toEqual([{"color": "red", "name": "test name", "score": 1}]);
     });
 
     test("clear info test", async () => {
