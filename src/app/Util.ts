@@ -15,7 +15,6 @@ export interface PlayerPostRequest {
 
 export interface PlayerPatchRequest {
     name: String
-    score: number
 }
 
 export class Database {
@@ -38,13 +37,13 @@ export class Database {
         return player
     }
 
-    public UpdateScore(name: String, score: number): Player {
+    public UpdateScore(name: String): Player {
         const data = readFileSync(this.file_name.toString())
         const players: Player[] = JSON.parse(data.toString())
 
         for(const player of players) {
             if(player.name == name) {
-                player.score = score
+                player.score = player.score + 1
                 writeFileSync(this.file_name.toString(), JSON.stringify(players))
 
                 return player

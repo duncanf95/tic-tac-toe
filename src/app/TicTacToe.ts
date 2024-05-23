@@ -21,8 +21,8 @@ export class TicTacToe {
         return player
     }
 
-    public UpdateScore(name: String, score: number): Player {
-        const player = this.database.UpdateScore(name, score)
+    public UpdateScore(name: String): Player {
+        const player = this.database.UpdateScore(name)
         return player
     }
 
