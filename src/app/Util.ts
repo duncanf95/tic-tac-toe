@@ -78,7 +78,7 @@ export class Database {
     }
 }
 
-export function getDataFromPostRequest(request: Request): PlayerPostRequest {
+export function getDataFromPostRequest(request: Request): PlayerPostRequest[] {
     return request.body
 }
 

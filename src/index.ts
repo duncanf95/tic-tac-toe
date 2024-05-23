@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import { TicTacToe } from "./app/TicTacToe";
-import { getDataFromPatchRequest, getDataFromPostRequest } from "./app/Util";
+import { Player, getDataFromPatchRequest, getDataFromPostRequest } from "./app/Util";
 import cors from 'cors';
 
 export const app: Express = express();
@@ -30,7 +30,10 @@ app.get("/player-info", cors(), (req: Request, res: Response) => {
 
 app.post("/player-info", cors(), (req: Request, res: Response) => {
   const data = getDataFromPostRequest(req)
-  const response = ticTacToe.CreatePlayer(data.name, data.color)
+  const response: Player[] = []
+  for(const player of data) {
+    response.push(ticTacToe.CreatePlayer(player.name, player.color))
+  }
   res.send(response);
 });
 
