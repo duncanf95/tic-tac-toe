@@ -11,7 +11,7 @@ describe("Test app.ts", () => {
       expect(res.body).toEqual({"color": "red", "name": "test name", score: 0});
     });
 
-    test("create user test", async () => {
+    test("update user test", async () => {
       const res = await request(app).patch("/player-info").send({name: "test name"})
       expect(res.status).toEqual(200)
       expect(res.body).toEqual({"color": "red", "name": "test name", score: 1});
